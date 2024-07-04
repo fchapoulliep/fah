@@ -1,0 +1,43 @@
+/*
+LegalInformations.css
+This file contains the css code for the Legal Informations page.
+file_path: src/css/LegalInformations.css
+Author: Your Name
+Version: 1.0
+Date: Current Date
+*/
+
+.legal-informations {
+  width: 100%;
+}
+
+.legal-informations-footer {
+  padding-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.legal-informations-footer-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.legal-informations-content {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+
+.legal-informations-icons {
+  font-size: 150%;
+}
+
+@media screen and (max-width: 870px) {
+  .legal-informations-footer {
+    flex-direction: column;
+    padding-top: 20px;
+  }
+}

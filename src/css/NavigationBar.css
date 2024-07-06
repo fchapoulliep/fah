@@ -13,16 +13,27 @@ Date: 02-07-2024
   display: flex;
   flex-direction: row;
   height: 100px;
-  position: fixed;
+  position: absolute;
   width: 100%;
   z-index: 100;
   background: transparent;
+  transition: all 0.5s ease-in-out;
+  justify-content: space-evenly;
 }
 
-.navigation-bar .menu-icon {
-  font-size: 120%;
-  color: #fff;
-  padding: 10px;
+.navigation-bar.scrolled {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.7);
+  animation: opacity 0.8s;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .navigation-bar-menu {
@@ -30,42 +41,7 @@ Date: 02-07-2024
   display: flex;
   height: 100%;
   justify-content: flex-start;
-  width: 33%;
-}
-
-.navigation-bar-cart {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: flex-end;
-  width: 33%;
-}
-
-.navigation-bar {
-  align-items: center;
-  color: #000;
-  display: flex;
-  flex-direction: row;
-  height: 100px;
-  justify-content: space-around;
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-  background: transparent;
-}
-
-.navigation-bar .menu-icon {
-  font-size: 120%;
-  color: #000;
-  padding: 10px;
-}
-
-.navigation-bar-menu {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: flex-start;
-  width: 33%;
+  width: 33.3%;
 }
 
 .navigation-bar-logo {
@@ -73,7 +49,17 @@ Date: 02-07-2024
   display: flex;
   height: 100%;
   justify-content: center;
-  width: 33%;
+  width: 33.3%;
+}
+
+.navigation-bar-logo img {
+  margin-top: 20px;
+  height: 300px;
+}
+
+.navigation-bar.navigation-bar.scrolled .navigation-bar-logo img {
+  margin-top: 0;
+  height: 200px;
 }
 
 .navigation-bar-cart {
@@ -81,5 +67,11 @@ Date: 02-07-2024
   display: flex;
   height: 100%;
   justify-content: flex-end;
-  width: 33%;
+  width: 33.3%;
+}
+
+.navigation-bar .menu-icon {
+  font-size: 120%;
+  color: #000;
+  padding: 10px;
 }

@@ -35,9 +35,68 @@ Date: Current Date
   font-size: 150%;
 }
 
+.legal-informations-together {
+  display: flex;
+}
+
+.legal-informations-content-part {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  width: 25%;
+}
+
+.legal-informations-content-part a {
+  line-height: 1.5;
+  color: #5b5c64;
+  text-decoration: none;
+}
+
+.legal-informations-content-part a:hover {
+  text-decoration: underline #000;
+  color: #000;
+}
+
+.newsletter-button {
+  background: transparent;
+  border: none;
+}
+
+.newsletter-button:hover {
+  cursor: pointer;
+}
+
+.legal-informations-copyright {
+  display: flex;
+  width: 90%;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 12px;
+  color: #5b5c64;
+  padding-bottom: 32px;
+}
+
+.legal-informations-copyright b {
+  font-weight: 400;
+}
+
 @media screen and (max-width: 870px) {
   .legal-informations-footer {
     flex-direction: column;
     padding-top: 20px;
+  }
+
+  .legal-informations-together {
+    flex-direction: column;
+  }
+
+  .second .legal-informations-content-part:nth-child(3),
+  .second .legal-informations-content-part:nth-child(4) {
+    display: none;
+  }
+
+  .legal-informations-content-part {
+    width: 100%;
+    margin: 10px;
   }
 }

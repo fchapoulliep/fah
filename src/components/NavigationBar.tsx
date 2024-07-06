@@ -1,12 +1,6 @@
-/**
- * Importing React and CSS
- */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../css/NavigationBar.css";
 
-/**
- * Importing Ant Design Icons
- */
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -15,25 +9,39 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 
-/**
- * Importing Menu component from Ant Design
- */
 import { Link } from "react-router-dom";
 
-/**
- * This component represents the navigation bar of the application.
- * It displays a logo and a menu, along with icons for user profile, wishlist, and shopping cart.
- */
+import LogoTypo from "../images/FAHLogoTypo.png";
+import LogoIco from "../images/FAHLogoIco.png";
+
 const NavigationBar: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="navigation-bar">
+    <div className={`navigation-bar ${isScrolled ? "scrolled" : ""}`}>
       <div className="navigation-bar-menu">
         <MenuOutlined className="menu-icon" style={{ paddingLeft: "24px" }} />
         <SearchOutlined className="menu-icon" />
       </div>
       <div className="navigation-bar-logo">
-        <Link to={"/"}>
-          <p>FAH</p>
+        <Link to="/">
+          <img src={isScrolled ? LogoIco : LogoTypo} alt="Logo" />
         </Link>
       </div>
       <div className="navigation-bar-cart">

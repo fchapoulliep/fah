@@ -10,16 +10,16 @@ Date: 02-07-2024
 .auth-page {
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
+  padding-top: 150px;
   align-items: center;
 }
 
 .auth-page-follow {
-  padding-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 20px;
 }
 
 .auth-page-follow h2 {
@@ -30,10 +30,8 @@ Date: 02-07-2024
 .auth-page-header {
   display: flex;
   flex-direction: row;
-  width: 100%;
   justify-content: center;
   margin-bottom: 40px;
-  padding-top: 40px;
 }
 
 .auth-page-header button {
@@ -72,6 +70,7 @@ Date: 02-07-2024
   border: none;
   padding: 10px 20px;
   width: 100%;
+  border-radius: 10px;
 }
 
 .form-button:hover {

@@ -1,11 +1,22 @@
+/**
+ * Importing React and CSS
+ */
 import React from "react";
-import { Divider } from "antd";
 import "../css/LegalInformations.css";
 
+/**
+ * Importing Ant Design components
+ */
+import { Divider, Input, Form } from "antd";
 import {
   SecurityScanOutlined,
   ScissorOutlined,
   EnvironmentOutlined,
+  InstagramFilled,
+  TwitterOutlined,
+  FacebookFilled,
+  ArrowRightOutlined,
+  TikTokFilled,
 } from "@ant-design/icons";
 
 /**
@@ -16,43 +27,139 @@ const LegalInformations: React.FC = () => {
   return (
     <div className="legal-informations">
       <div className="legal-informations-footer">
-        <div className="legal-informations-footer-link">
-          <EnvironmentOutlined className="legal-informations-icons" />
-          <p>LIVRAISON INTERNATIONALE</p>
-        </div>
-        <div className="legal-informations-footer-link">
-          <SecurityScanOutlined className="legal-informations-icons" />
-          <p>PAIEMENTS SÛRS ET SÉCURISÉS</p>
-        </div>
-        <div className="legal-informations-footer-link">
-          <ScissorOutlined className="legal-informations-icons" />
-          <p>ARTISANAT ET SAVOIR-FAIRE</p>
-        </div>
+        <FooterLink
+          icon={<EnvironmentOutlined className="legal-informations-icons" />}
+          text="LIVRAISON INTERNATIONALE"
+        />
+        <FooterLink
+          icon={<SecurityScanOutlined className="legal-informations-icons" />}
+          text="PAIEMENTS SÛRS ET SÉCURISÉS"
+        />
+        <FooterLink
+          icon={<ScissorOutlined className="legal-informations-icons" />}
+          text="ARTISANAT ET SAVOIR-FAIRE"
+        />
       </div>
 
+      <Divider orientation="center">Informations légales</Divider>
+
       <div className="legal-informations-content">
-        <Divider orientation="center"> Informations légales </Divider>
-        <p>
-          Ce site est édité par la société FAH, SAS au capital de 10 000 €,
-          immatriculée au RCS de Paris sous le numéro 123456789, dont le siège
-          social est situé 1 rue de Rivoli, 75001 Paris.
-        </p>
-        <p>Directeur de la publication : John Doe</p>
-        <p>Contact :</p>
-        <ul>
-          <li>
-            Adresse e-mail :
-            <a href="mailto:" className="email-link">
-              hey
-            </a>
-          </li>
-          <li>Numéro de téléphone : 01 23 45 67 89</li>
-        </ul>
-        <p>Hébergeur du site : OVH, 2 rue Kellermann, 59100 Roubaix</p>
-        <p>Ce site a été réalisé par l'équipe FAH.</p>
+        <div className="legal-informations-together">
+          <InformationSection
+            title="SERVICES CLIENTS"
+            links={[
+              "Suivi de commande",
+              "Politique de retour et remboursement",
+            ]}
+          />
+          <InformationSection
+            title="MENTIONS LÉGALES"
+            links={[
+              "Mentions légales",
+              "Conditions générales de vente",
+              "Conditions générales d'utilisation",
+            ]}
+          />
+          <InformationSection title="NOUS SUIVRE SUR">
+            <SocialMediaIcons />
+          </InformationSection>
+          <InformationSection title="S’ABONNER À NOTRE NEWSLETTER">
+            <NewsletterForm />
+          </InformationSection>
+        </div>
+
+        <div className="legal-informations-together second">
+          <InformationSection
+            title="NUMÉRIQUE"
+            links={["Réseaux sociaux", "Accessibilité"]}
+          />
+          <InformationSection
+            title="POLITIQUE DE CONFIDENTIALITÉ ET DES COOKIES"
+            links={[
+              "Politique de confidentialité",
+              "Politique de cookies",
+              "Paramètres relatifs aux cookies",
+            ]}
+          />
+          <InformationSection title="" />
+          <InformationSection title="" />
+        </div>
+        <InformationSection
+          title="À PROPOS DE FAH"
+          links={[
+            "Notre histoire",
+            "Matières, Activisme, Émissions, Approvisionnement & Heritage",
+          ]}
+        />
       </div>
+
+      <div className="legal-informations-copyright">
+        <p> <b>© 2024 FAH. Tous droits réservés.</b></p>
+      </div>
+
     </div>
   );
 };
+
+const FooterLink: React.FC<{ icon: React.ReactNode; text: string }> = ({
+  icon,
+  text,
+}) => (
+  <div className="legal-informations-footer-link">
+    {icon}
+    <p>{text}</p>
+  </div>
+);
+
+const InformationSection: React.FC<{
+  title: string;
+  links?: string[];
+  children?: React.ReactNode;
+}> = ({ title, links, children }) => (
+  <div className="legal-informations-content-part">
+    <p>{title}</p>
+    {links?.map((link) => (
+      <a href="/" key={link}>
+        {link}
+      </a>
+    ))}
+    {children}
+  </div>
+);
+
+const SocialMediaIcons: React.FC = () => (
+  <div style={{ display: "flex", gap: "10px" }}>
+    <InstagramFilled />
+    <FacebookFilled />
+    <TwitterOutlined />
+    <TikTokFilled />
+  </div>
+);
+
+const NewsletterForm: React.FC = () => (
+  <Form style={{ display: "flex", justifyContent: "space-around" }}>
+    <Form.Item
+      style={{ width: "90%" }}
+      name="email"
+      rules={[
+        {
+          required: true,
+          message: "Ce champ est obligatoire.",
+        },
+        {
+          type: "email",
+          message: "Veuillez entrer une adresse email valide.",
+        },
+      ]}
+    >
+      <Input placeholder="Votre adresse email" />
+    </Form.Item>
+    <Form.Item>
+      <button type="submit" className="newsletter-button">
+        <ArrowRightOutlined style={{ fontSize: "150%" }} />
+      </button>
+    </Form.Item>
+  </Form>
+);
 
 export default LegalInformations;

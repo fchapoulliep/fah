@@ -1,7 +1,7 @@
 /**
  * Import React and CSS
  */
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/AuthPage.css";
 import { useState } from "react";
 
@@ -21,6 +21,11 @@ import { ShoppingOutlined } from "@ant-design/icons";
  */
 const SignInPage: React.FC = () => {
   const [isSignIn, setIsSignIn] = useState(true); // true for sign-in, false for sign-up
+
+  useEffect(() => {
+    document.title = "FAH - Authentification";
+    window.scrollTo(0, 0);
+  });
 
   /**
    * This function is called when the user clicks on the sign-in or sign-up button.
@@ -49,7 +54,7 @@ const SignInPage: React.FC = () => {
 
       {/* Header of the sign-in page, contains button to redirect to account connexion or creation */}
       <div className="auth-page-header">
-        <div className="sign-in-button">
+        <div className="sign-in-button active">
           <button
             onClick={() =>
               handleButtonClick(

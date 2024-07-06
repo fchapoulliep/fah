@@ -1,7 +1,7 @@
 /**
  * Import React and CSS
  */
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/ShopPage.css";
 
 import AudioPlayer from "react-h5-audio-player";
@@ -10,19 +10,53 @@ import "react-h5-audio-player/lib/styles.css";
 import audioFile from "../musics/yeatBeingRealSlowedReverb.mp3";
 
 const ShopPage: React.FC = () => {
+  const refHistory = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.title = "FAH";
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    });
+
+    observer.observe(refHistory.current as Element);
+  });
+
   return (
     <div className="shop-page">
       <AudioPlayer className="audio-player" src={audioFile} />
-      <div className="shop-page-explanation">
+      <div className="shop-page-header-picture">
         <p>
-          Découvrez FAH, une marque de vêtements qui fusionne l'énergie
-          audacieuse du style Y2K avec la sophistication moderne. Chaque pièce
-          est méticuleusement conçue par trois jeunes créateurs venus d'horizons
-          variés, unis par une passion commune : la mode. FAH incarne l'esprit
-          d'innovation et de diversité, offrant des collections uniques qui
-          défient les tendances et célèbrent l'individualité.
+          <strong>FAH - Collection 2024</strong>
         </p>
       </div>
+      <div className="shop-page-redirections">
+        <div className="shop-page-redirection women">
+          <p>ALLER À LA MODE</p>
+          <h2>FEMME</h2>
+        </div>
+        <div className="shop-page-redirection men">
+          <p>ALLER À LA MODE</p>
+          <h2>HOMME</h2>
+        </div>
+        <div className="shop-page-redirection unisex">
+          <p>ALLER À LA MODE</p>
+          <h2>UNISEXE</h2>
+        </div>
+      </div>
+
+      <div className="shop-page-footer-quote">
+        <p>
+          Le meilleur défilé de mode est dans la rue. Ça l'a toujours été et le
+          sera toujours. - Bill Cunningham
+        </p>
+      </div>
+
+      <div className="shop-page-history" ref={refHistory}></div>
     </div>
   );
 };
